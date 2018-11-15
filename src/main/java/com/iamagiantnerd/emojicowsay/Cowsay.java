@@ -16,7 +16,18 @@ public class Cowsay
 
    public static void main(String[] args)
    {
-      Cowsay cowsay = new Cowsay(Animals.Cow);
-      cowsay.say(args[0]);
+      // default to cow
+      Animals sayAnimal = Animals.Cow;
+      if(args.length>1) {
+         for (Animals animal : Animals.values())
+         {
+            if(animal.name().equals(args[1])) {
+               sayAnimal = animal;
+               break;
+            }
+         }
+      }
+      Cowsay cowsay = new Cowsay(sayAnimal);
+      System.out.println(cowsay.say(args[0]));
    }
 }
